@@ -31,6 +31,8 @@ for (var i = 0; i < howManyButtons; i++) {
   document.querySelectorAll(".drum")[i].addEventListener('click', function() {
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
+
     //this.style.color = "white";
 
     //alert("Good job!");
@@ -40,6 +42,7 @@ for (var i = 0; i < howManyButtons; i++) {
 //Detecting Keyboard Press
 document.addEventListener('keydown', function(event) {
     makeSound(event.key)
+    buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -67,3 +70,9 @@ function makeSound(key) {
       break;
   }
 }
+
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector('.' + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){ activeButton.classList.remove("pressed"); }, 300);
+  }
